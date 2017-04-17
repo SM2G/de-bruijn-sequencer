@@ -1,12 +1,12 @@
 var app = angular.module('de-bruijn', []);
 ////////////////////////////////////////////////////////////////////////////////
 app.controller('FormController', function () {
-    this.k = "1 2 3 A";
-    this.n = 5;
+    this.k = "A B C";
+    this.n = 3;
 
     this.reset = function() {
-        this.k = "1 2 3 A";
-        this.n = 5;
+        this.k = "A B C";
+        this.n = 3;
     };
 
     this.deBrujin = function(k, n) {
@@ -22,9 +22,19 @@ app.controller('FormController', function () {
             table = "<ul class=\"list-group\">";
             for(i = 0 ; i < karray.length ; i++) {
                 table = table + "<li class=\"list-group-item\"><span class=\"badge\">"
-                + karray[i]  + " </span> Element " + i + "</li>";
+                + karray[i]  + " </span> Element " + i + " is </li>";
             }
             table = table + "</ul>"
+
+            // Replace
+            function replace_all(solution, k){
+                karray = [];
+                karray = k.split(" ");
+                for(i = 0 ; i < karray.length ; i++) {
+                    solution = symbol + '>' + id +' '+ solution.replace(RegExp(i, "g"), karray[i]);
+                }
+                return "clean > " + solution;
+            };
 
             //De Bruijn sequence for alphabet size k (0,1,2...k-1)
             //and subsequences of length n.
@@ -56,9 +66,11 @@ app.controller('FormController', function () {
             var output = "K length is " + karray.length +
             ", N is " + n;
         }
+
         var sequence = db(karray.length, n);
+        var new_sequence = replace_all(sequence.join(''), k);
         document.getElementById('solution').innerHTML = table + output + "</br>"
-        + sequence.join('');
+        + new_sequence;
     };
 
 });
