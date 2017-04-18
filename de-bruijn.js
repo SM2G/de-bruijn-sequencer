@@ -31,7 +31,7 @@ app.controller('FormController', function () {
                 karray = [];
                 karray = k.split(" ");
                 for(i = 0 ; i < karray.length ; i++) {
-                    solution = symbol + '>' + id +' '+ solution.replace(RegExp(i, "g"), karray[i]);
+                    solution = solution.replace(RegExp(i, "g"), karray[i]);
                 }
                 return "clean > " + solution;
             };
