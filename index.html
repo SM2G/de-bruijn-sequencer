@@ -3,7 +3,9 @@
 
 <head>
     <meta charset="utf-8">
-    <title>De Brujin Solver</title>
+    <title>De Brujin Sequencer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -12,8 +14,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cyborg/bootstrap.min.css" rel="stylesheet" integrity="sha384-D9XILkoivXN+bcvB2kSOowkIvIcBbNdoDQvfBNsxYAIieZbx8/SI4NeUvrRGCpDi" crossorigin="anonymous">
 
     <!-- Font Awesome -->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-k2/8zcNbxVIh5mnQ52A0r3a6jAgMGxFJFE2707UxGCk= sha512-ZV9KawG2Legkwp3nAlxLIVFudTauWuBpC10uEafMHYL0Sarrz5A7G79kXh5+5+woxQ5HM559XX2UZjMJ36Wplg=="
-    crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-k2/8zcNbxVIh5mnQ52A0r3a6jAgMGxFJFE2707UxGCk= sha512-ZV9KawG2Legkwp3nAlxLIVFudTauWuBpC10uEafMHYL0Sarrz5A7G79kXh5+5+woxQ5HM559XX2UZjMJ36Wplg==" crossorigin="anonymous">
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -29,59 +30,66 @@
 </head>
 
 <body>
-    <div class="container" ng-controller="FormController as formCtrl">
-        <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
-                        <span class="sr-only">Toggle navigation</span>
-                    </button>
-                    <a class="navbar-brand" href="#">De Brujin solver</a>
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="#" class="navbar-brand">De Bruijn Sequencer</a>
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main"></button>
+            </div>
+            <div class="navbar-collapse collapse" id="navbar-main">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#" target="_blank"><i class="fa fa-2x fa-fw fa-github" aria-hidden="true"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+
+        <div class="page-header" id="banner">
+            <div class="row">
+                <div class="col-lg-8 col-md-7 col-sm-6">
+                    <h1>De Bruijn Sequencer</h1>
+                    <p class="lead"></p>
                 </div>
             </div>
-        </nav>
+        </div>
 
-        <div class="col-md-6 col-md-offset-3">
-            <form class="form-horizontal"
-            name="formElements"
+        <div class="container" ng-controller="FormController as formCtrl">
+            <div class="col-md-6 col-md-offset-3">
+                <form class="form-horizontal" name="formElements" ng-submit="formElements.$valid" method="POST" novalidate>
 
-            ng-submit="formElements.$valid"
-            method="POST"
-            novalidate>
-                <legend>De Brujin solver</legend>
+                    <!-- Elements Array -->
+                    <fieldset class="form-group">
+                        <label class="control-label" for="focusedInput">Code Elements (k)</label>
+                        <input class="form-control" ng-model="formCtrl.k" type="text" required>
+                        <span class="help-block">Enter dictionary symbols separated by spaces. ex: <b>1 2 3 A B</b>
+                            <p class="text-info">Dictionary size: {{ formCtrl.k.split(" ").length }}</p>
+                        </span>
+                    </fieldset>
 
-                <!-- Elements Array -->
-                <fieldset class="form-group">
-                    <label class="control-label" for="focusedInput">Code Elements (k)</label>
-                    <input class="form-control" ng-model="formCtrl.k" type="text" required>
-                    <span class="help-block">Enter dictionary symbols separated by spaces. ex: <b>1 2 3 A B</b>
-                        <p class="text-info">Dictionary size: {{ formCtrl.k.split(" ").length }}</p>
-                    </span>
-                </fieldset>
+                    <!-- Code Length Selector -->
+                    <fieldset class="form-group">
+                        <label class="control-label">Code Length (n)</label>
+                        <select ng-model="formCtrl.n" class="form-control" ng-options="n for n in [2,3,4,5,6]" title="Code Length" required>
+                        </select>
+                    </fieldset>
 
-                <!-- Code Length Selector -->
-                <fieldset class="form-group">
-                    <label class="control-label">Code Length (n)</label>
-                    <select ng-model="formCtrl.n" class="form-control" ng-options="n for n in [2,3,4,5,6]" title="Code Length" required>
-                    </select>
-                </fieldset>
-
-                <!-- Indicators -->
-                <div>
-                    <div class="label label-success">{{ "Angular" + " loaded." }}</div>
-                    <div class="label label-primary">{{ formCtrl.k.split(" ") }}</div>
-                    <div class="label label-info">{{ formCtrl.n }}</div>
-                    <div class="label label-info"> form is {{formElements.$valid}}</div>
-                </div>
-
-                <!-- Validation -->
-                <fieldset class="form-group">
-                    <div class="pull-right">
-                        <button ng-click="formCtrl.reset()" class="btn btn-default">Reset</button>
-                        <button ng-click="formCtrl.deBrujin(formCtrl.k, formCtrl.n);" class="btn btn-primary" ng-disabled="formElements.$invalid">Submit</button>
+                    <!-- Indicators -->
+                    <div>
+                        <div class="label label-success">{{ "Angular" + " loaded." }}</div>
+                        <div class="label label-primary">{{ formCtrl.k.split(" ") }}</div>
+                        <div class="label label-info">{{ formCtrl.n }}</div>
+                        <div class="label label-info"> form is {{formElements.$valid}}</div>
                     </div>
-                </fieldset>
-            </form>
+
+                    <!-- Validation -->
+                    <fieldset class="form-group">
+                        <div class="pull-right">
+                            <button ng-click="formCtrl.reset()" class="btn btn-default">Reset</button>
+                            <button ng-click="formCtrl.deBrujin(formCtrl.k, formCtrl.n);" class="btn btn-primary" ng-disabled="formElements.$invalid">Submit</button>
+                        </div>
+                    </fieldset>
+                </form>
 
                 <div class="well well-lg">
                     <div class="panel-body">
@@ -94,7 +102,7 @@
                             </div>
                         </div>
                     </div>
+                </div>
             </div>
         </body>
-
         </html>
