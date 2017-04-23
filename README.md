@@ -11,4 +11,6 @@ Give it [a try](https://sm2g.github.io/de-bruijn-sequencer/)!
 
 * Bootswatch
 
+* Font Awesome
+
 * Github Pages

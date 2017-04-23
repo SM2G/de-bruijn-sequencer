@@ -1,12 +1,12 @@
 var app = angular.module('de-bruijn', []);
 ////////////////////////////////////////////////////////////////////////////////
 app.controller('FormController', function () {
-    this.k = "A B C";
-    this.n = 3;
+    this.k = "6 3 9 A";
+    this.n = 4;
 
     this.reset = function() {
-        this.k = "A B C";
-        this.n = 3;
+        this.k = "6 3 9 A";
+        this.n = 4;
     };
 
     this.deBrujin = function(k, n) {
@@ -18,6 +18,7 @@ app.controller('FormController', function () {
             // Not enough data
             output = "<p class='text-success'>Not</p> enough values. ("+ karray.length +" values, min 2)";
         } else {
+
             //Table
             table = "<ul class=\"list-group\">";
             for(i = 0 ; i < karray.length ; i++) {
@@ -30,10 +31,24 @@ app.controller('FormController', function () {
             function replace_all(solution, k){
                 karray = [];
                 karray = k.split(" ");
-                for(i = 0 ; i < karray.length ; i++) {
+                for (i = 0 ; i < karray.length ; i++) {
                     solution = solution.replace(RegExp(i, "g"), karray[i]);
                 }
-                return "clean > " + solution;
+                return solution;
+            };
+
+            // Format
+            function format_solution(solution, n){
+                var splitSolution = "";
+                var maxLength = solution.length;
+                for (i = 0 ; i < maxLength ; i++) {
+                    if ( (i + 1) % n < 1 ) {
+                        splitSolution = splitSolution + solution.charAt(i) +" - " + (i+1) + "</br>";
+                    } else {
+                        splitSolution = splitSolution + solution.charAt(i) + " ";
+                    }
+                }
+                return splitSolution;
             };
 
             //De Bruijn sequence for alphabet size k (0,1,2...k-1)
@@ -64,13 +79,15 @@ app.controller('FormController', function () {
             };
 
             var output = "K length is " + karray.length +
-            ", N is " + n;
+            ", N is " + n + ', total length is ' + db(karray.length, n).length ;
         }
 
         var sequence = db(karray.length, n);
         var new_sequence = replace_all(sequence.join(''), k);
+        var split_sequence = format_solution(new_sequence, n);
         document.getElementById('solution').innerHTML = table + output + "</br>"
-        + new_sequence;
+        + "new_sequence> " + new_sequence+ "</br>"
+        + "split_sequence> " + split_sequence;
     };
 
 });
