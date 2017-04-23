@@ -1,16 +1,17 @@
 # De Bruijn Sequencer
 
 An **AngularJS** powered app hosted on **Github Pages** to find De Bruijn sequences right on any web browser.
+
 Give it [a try](https://sm2g.github.io/de-bruijn-sequencer/)!
 
 ## Components
 
-* AngularJS
+* [AngularJS](https://angularjs.org)
 
-* Bootstrap
+* [Bootstrap](http://getbootstrap.com)
 
-* Bootswatch
+* [Bootswatch](http://bootswatch.com)
 
-* Font Awesome
+* [Font Awesome](http://fontawesome.io/)
 
-* Github Pages
+* [Github Pages](https://pages.github.com/)
