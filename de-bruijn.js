@@ -43,7 +43,9 @@ app.controller('FormController', function () {
                 var maxLength = solution.length;
                 for (i = 0 ; i < maxLength ; i++) {
                     if ( (i + 1) % n < 1 ) {
-                        splitSolution = splitSolution + solution.charAt(i) +" - " + (i+1) + "</br>";
+                        splitSolution = splitSolution
+                        + solution.charAt(i)
+                        + " - " +'<a class=\"text-info\">' + (i+1) + "</a></br>";
                     } else {
                         splitSolution = splitSolution + solution.charAt(i) + " ";
                     }
@@ -86,8 +88,8 @@ app.controller('FormController', function () {
         var new_sequence = replace_all(sequence.join(''), k);
         var split_sequence = format_solution(new_sequence, n);
         document.getElementById('solution').innerHTML = table + output + "</br>"
-        + "new_sequence> " + new_sequence+ "</br>"
-        + "split_sequence> " + split_sequence;
+        //+ new_sequence+ "</br>"
+        + split_sequence;
     };
 
 });
