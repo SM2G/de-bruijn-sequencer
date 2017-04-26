@@ -9,6 +9,19 @@ app.controller('FormController', function () {
         this.n = 4;
     };
 
+    // Time estimate
+    this.sequenceLength = function (k, n) {
+        solutionLength = 0;
+        karray = [];
+        karray = k.split(" ");
+        if (karray.length > 2 && (karray.length ** n) < 300) {
+            solutionLength = karray.length ** n;
+        } else {
+            solutionLength = 0;
+        }
+        return solutionLength;
+    };
+
     this.deBrujin = function(k, n) {
         //alert("K = " + k + " and N = " + n);
         karray = [];

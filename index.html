@@ -55,36 +55,24 @@
         </div>
 
         <div class="container" ng-controller="FormController as formCtrl">
-            <div class="col-md-6 col-md-offset-3">
-                <form class="form-horizontal" name="formElements" ng-submit="formElements.$valid" method="POST" novalidate>
+            <form class="form-horizontal" name="formElements" ng-submit="formElements.$valid" method="POST" novalidate>
 
-                    <!-- Elements Array -->
-                    <fieldset class="form-group">
+                <fieldset >
+                    <div class="form-group">
+                        <!-- Elements Array -->
                         <label class="control-label" for="focusedInput">Code Elements (k)</label>
                         <input class="form-control" ng-model="formCtrl.k" type="text" required>
                         <span class="help-block">Enter dictionary symbols separated by spaces. ex: <b>1 2 3 A B</b>
                             <p class="text-info">Dictionary size: {{ formCtrl.k.split(" ").length }}</p>
-                        </span>
-                    </fieldset>
+                        </span></br>
 
-                    <!-- Code Length Selector -->
-                    <fieldset class="form-group">
+                        <!-- Code Length Selector -->
                         <label class="control-label">Code Length (n)</label>
                         <select ng-model="formCtrl.n" class="form-control" ng-options="n for n in [2,3,4,5,6]" title="Code Length" required>
-                        </select>
-                    </fieldset>
+                        </select></br>
 
-                    <!-- Indicators
-                    <div>
-                        <div class="label label-success">{{ "Angular" + " loaded." }}</div>
-                        <div class="label label-primary">{{ formCtrl.k.split(" ") }}</div>
-                        <div class="label label-info">{{ formCtrl.n }}</div>
-                        <div class="label label-info"> form is {{formElements.$valid}}</div>
-                    </div> -->
-
-                    <!-- Validation -->
-                    <fieldset class="form-group">
-                        <div class="pull-right">
+                        <!-- Validation -->
+                        <div class="pull-right"></br>
                             <button ng-click="formCtrl.reset()" class="btn btn-default">Reset</button>
                             <button ng-click="formCtrl.deBrujin(formCtrl.k, formCtrl.n);" class="btn btn-primary" ng-disabled="formElements.$invalid">Submit</button>
                         </div>
@@ -94,14 +82,21 @@
                 <div class="well well-lg">
                     <div class="panel-body">
                         <div>
-                            <p>K: {{ formCtrl.k }} </br>
-                                N: {{ formCtrl.n }} </br>
-                                <!--{{ formCtrl.deBrujin(formCtrl.k,formCtrl.n); }}--> </p>
+                            <h3>Parameters</h3>
+                            <strong>K:</strong> <strong class="text-info">{{ formCtrl.k }} </strong></br>
+                            <strong>N:</strong> <strong class="text-info">{{ formCtrl.n }} </strong></br>
+                            <strong>Length:</strong> <strong class="text-info">{{ formCtrl.sequenceLength(formCtrl.k, formCtrl.n) }}</strong>
+                            <h3>Difficulty</h3>
+                            <div class="progress progress-striped">
+                                <div class="progress-bar progress-bar-info" style="width: {{ formCtrl.sequenceLength(formCtrl.k, formCtrl.n) / 2 }}%">
+                                    <p class="text-right"><strong>{{ formCtrl.sequenceLength(formCtrl.k, formCtrl.n) }} inputs</strong></p></div>
+                                </div>
                                 <div id="solution"></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </body>
-        </html>
+        </div>
+    </body>
+    </html>
