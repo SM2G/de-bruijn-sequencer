@@ -88,8 +88,8 @@
                             <strong>Length:</strong> <strong class="text-info">{{ formCtrl.sequenceLength(formCtrl.k, formCtrl.n) }}</strong>
                             <h3>Difficulty</h3>
                             <div class="progress progress-striped">
-                                <div class="progress-bar progress-bar-info" style="width: {{ formCtrl.sequenceLength(formCtrl.k, formCtrl.n) / 2 }}%">
-                                    <p class="text-right"><strong>{{ formCtrl.sequenceLength(formCtrl.k, formCtrl.n) }} inputs</strong></p></div>
+                                <div class="progress-bar progress-bar-info" style="width: {{ formCtrl.sequenceLength(formCtrl.k, formCtrl.n) * 100 / 240 }}%">
+                                    <p class="text-left"><strong>{{ formCtrl.sequenceLength(formCtrl.k, formCtrl.n) }} inputs</strong></p></div>
                                 </div>
                                 <div id="solution"></div>
                             </div>

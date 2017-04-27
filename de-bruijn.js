@@ -14,10 +14,10 @@ app.controller('FormController', function () {
         solutionLength = 0;
         karray = [];
         karray = k.split(" ");
-        if (karray.length > 2 && (karray.length ** n) < 300) {
+        if ( (karray.length ** n) < 300) {
             solutionLength = karray.length ** n;
         } else {
-            solutionLength = 0;
+            solutionLength = "Too much data!";
         }
         return solutionLength;
     };
@@ -52,17 +52,43 @@ app.controller('FormController', function () {
 
             // Format
             function format_solution(solution, n){
-                var splitSolution = "";
+                var splitSolution = "<table class=\"table table-striped table-hover \">"
+                + "<thead>"
+                + "<tr>"
+                + "<th>Solution ID</th>"
+                + "<th>Code</th>"
+                + "<th>Length</th>"
+                + "</tr>"
+                + "</thead>  <tbody>";
                 var maxLength = solution.length;
+                var currLine = "";
+                var lineCounter = 1;
                 for (i = 0 ; i < maxLength ; i++) {
                     if ( (i + 1) % n < 1 ) {
+                        // Next input + End of line
+                        currLine = currLine + solution.charAt(i) + " ";
                         splitSolution = splitSolution
-                        + solution.charAt(i)
-                        + " - " +'<a class=\"text-info\">' + (i+1) + "</a></br>";
+                        + "<tr>"
+                        + "<td class=\"text-primary\">" + lineCounter + "</td>"
+                        + "<td>" + currLine + "</td>"
+                        + "<td class=\"text-info\">" + (i+1) + "</td>"
+                        + "</tr>";
+                        currLine = "";
+                        lineCounter +=1;
                     } else {
-                        splitSolution = splitSolution + solution.charAt(i) + " ";
+                        // Next input
+                        currLine = currLine + solution.charAt(i) + " ";
                     }
                 }
+                if ( maxLength % n > 0 ){
+                    splitSolution = splitSolution +
+                    + "<tr>"
+                    + "<td class=\"text-primary\">" + lineCounter + "</td>"
+                    + "<td>" + currLine + "</td>"
+                    + "<td class=\"text-info\">" + maxLength + "</td>"
+                    + "</tr>";
+                }
+                splitSolution = splitSolution + "</tbody></table>";
                 return splitSolution;
             };
 
