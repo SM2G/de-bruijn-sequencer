@@ -10,14 +10,22 @@ app.controller('FormController', function () {
     };
 
     // Time estimate
-    this.sequenceLength = function (k, n) {
+    this.combinationLength = function (k, n) {
         solutionLength = 0;
         karray = [];
         karray = k.split(" ");
-        if ( (karray.length ** n) < 300) {
-            solutionLength = karray.length ** n;
+        solutionLength = (karray.length ** n * n);
+        return solutionLength;
+    };
+
+    this.sequenceLength = function (k, n, limit) {
+        solutionLength = 0;
+        karray = [];
+        karray = k.split(" ");
+        if ( (karray.length ** n) > limit && limit != 0) {
+            solutionLength = "Too long for manual ";
         } else {
-            solutionLength = "Too much data!";
+            solutionLength = karray.length ** n;
         }
         return solutionLength;
     };
