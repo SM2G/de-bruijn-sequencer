@@ -71,10 +71,22 @@ app.controller('FormController', function () {
                 var maxLength = solution.length;
                 var currLine = "";
                 var lineCounter = 1;
+                var currentChar = "";
+                var prevChar = "";
                 for (i = 0 ; i < maxLength ; i++) {
+                    // Preparing char
+                    currentChar = solution.charAt(i);
+                    prevChar = solution.charAt(i-1);
+                    if ( currentChar === prevChar ) {
+                        currentChar = "<span class=\"text-muted\">"
+                            + currentChar
+                            + " </span>";
+                    } else {
+                        currentChar = currentChar + " ";
+                    }
                     if ( (i + 1) % n < 1 ) {
                         // Next input + End of line
-                        currLine = currLine + solution.charAt(i) + " ";
+                        currLine = currLine + currentChar;
                         splitSolution = splitSolution
                         + "<tr>"
                         + "<td class=\"text-primary\">" + lineCounter + "</td>"
@@ -85,7 +97,7 @@ app.controller('FormController', function () {
                         lineCounter +=1;
                     } else {
                         // Next input
-                        currLine = currLine + solution.charAt(i) + " ";
+                        currLine = currLine + currentChar;
                     }
                 }
                 if ( maxLength % n > 0 ){
