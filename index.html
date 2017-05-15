@@ -16,6 +16,9 @@
     <!-- Font Awesome -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-k2/8zcNbxVIh5mnQ52A0r3a6jAgMGxFJFE2707UxGCk= sha512-ZV9KawG2Legkwp3nAlxLIVFudTauWuBpC10uEafMHYL0Sarrz5A7G79kXh5+5+woxQ5HM559XX2UZjMJ36Wplg==" crossorigin="anonymous">
 
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
@@ -49,49 +52,50 @@
             </div>
         </nav>
 
-        <form class="form-horizontal" name="formElements" ng-submit="formElements.$valid" method="POST" novalidate>
-            <fieldset >
-                <div class="form-group">
-                    <!-- Elements Array -->
-                    <label class="control-label" for="focusedInput">Code Elements (k)</label>
-                    <input class="form-control" ng-model="formCtrl.k" type="text" required>
-                    <span class="help-block">Enter dictionary symbols separated by spaces. ex: <b>1 2 3 A B</b>
-                        <p class="text-info">Dictionary size: {{ formCtrl.k.split(" ").length }}</p>
-                    </span></br>
+        <div class="row">
+            <form class="col-md-6 col-md-offset-3 form-horizontal animated fadeInLeft" name="formElements" ng-submit="formElements.$valid" method="POST" novalidate>
+                <fieldset >
+                    <div class="form-group">
+                        <!-- Elements Array -->
+                        <label class="control-label" for="focusedInput">Code Elements (k)</label>
+                        <input class="form-control" ng-model="formCtrl.k" type="text" required>
+                        <span class="help-block">Enter dictionary symbols separated by spaces. ex: <b>1 2 3 A B</b>
+                            <p class="text-info">Dictionary size: {{ formCtrl.k.split(" ").length }}</p>
+                        </span></br>
 
-                    <!-- Code Length Selector -->
-                    <label class="control-label">Code Length (n)</label>
-                    <select ng-model="formCtrl.n" class="form-control" ng-options="n for n in [2,3,4,5,6]" title="Code Length" required>
-                    </select></br>
+                        <!-- Code Length Selector -->
+                        <label class="control-label">Code Length (n)</label>
+                        <select ng-model="formCtrl.n" class="form-control" ng-options="n for n in [2,3,4,5,6]" title="Code Length" required>
+                        </select></br>
 
-                    <!-- Validation -->
-                    <div class="pull-right"></br>
-                        <button ng-click="formCtrl.deBrujin(formCtrl.k, formCtrl.n);" class="btn btn-lg btn-primary" ng-disabled="formElements.$invalid">Submit</button>
-                        <button ng-click="formCtrl.reset()" class="btn btn-lg btn-default">Reset</button>
+                        <!-- Validation -->
+                        <div class="pull-right animated fadeInLeft"></br>
+                            <button ng-click="formCtrl.deBrujin(formCtrl.k, formCtrl.n);" class="btn btn-lg btn-primary" style="margin-right:10px" ng-disabled="formElements.$invalid">Submit</button>
+                            <button ng-click="formCtrl.reset()" class="btn btn-lg btn-default">Reset</button>
+                        </div>
                     </div>
                 </fieldset>
             </form>
-
-            <div class="well well-lg">
-                <div class="panel-body">
-                    <div>
-                        <h3>Parameters</h3>
-                        <strong>K:</strong> <strong class="text-info">{{ formCtrl.k }} </strong></br>
-                        <strong>N:</strong> <strong class="text-info">{{ formCtrl.n }} </strong></br>
-                        <strong>Combination Length:</strong> <strong class="text-danger">{{ formCtrl.combinationLength(formCtrl.k, formCtrl.n) }}</strong></br>
-                        <strong>De Bruijn Length:</strong> <strong class="text-success">{{ formCtrl.sequenceLength(formCtrl.k, formCtrl.n, 0) }}</strong>
-                        <h3>Difficulty</h3>
-                        <div class="progress progress-striped">
-                            <div class="progress-bar progress-bar-info" style="width: {{ formCtrl.sequenceLength(formCtrl.k, formCtrl.n, 0) * 100 / 240 }}%">
-                                <p class="text-left"><strong>{{ formCtrl.sequenceLength(formCtrl.k, formCtrl.n, 375) }} inputs</strong></p>
-                            </div>
+        </div>
+        <div class="well well-lg">
+            <div class="panel-body">
+                <div>
+                    <h3>Parameters</h3>
+                    <strong>K:</strong> <strong class="text-info">{{ formCtrl.k }} </strong></br>
+                    <strong>N:</strong> <strong class="text-info">{{ formCtrl.n }} </strong></br>
+                    <strong>Combination Length:</strong> <strong class="text-danger">{{ formCtrl.combinationLength(formCtrl.k, formCtrl.n) }}</strong></br>
+                    <strong>De Bruijn Length:</strong> <strong class="text-success">{{ formCtrl.sequenceLength(formCtrl.k, formCtrl.n, 0) }}</strong>
+                    <h3>Difficulty</h3>
+                    <div class="progress progress-striped">
+                        <div class="progress-bar progress-bar-info" style="width: {{ formCtrl.sequenceLength(formCtrl.k, formCtrl.n, 0) * 100 / 240 }}%">
+                            <p class="text-left"><strong>{{ formCtrl.sequenceLength(formCtrl.k, formCtrl.n, 375) }} inputs</strong></p>
                         </div>
-                        <div class="progress progress-striped">
-                            <div class="progress-bar progress-bar-success" style="width: {{ formCtrl.sequenceLength(formCtrl.k, formCtrl.n, 0) / 100 }}%"></div>
-                            <div class="progress-bar progress-bar-danger" style="width: {{ (formCtrl.combinationLength(formCtrl.k, formCtrl.n) - formCtrl.sequenceLength(formCtrl.k, formCtrl.n, 0)) / 100 }}%"></div>
-                        </div>
-                        <div id="solution"></div>
                     </div>
+                    <div class="progress progress-striped">
+                        <div class="progress-bar progress-bar-success" style="width: {{ formCtrl.sequenceLength(formCtrl.k, formCtrl.n, 0) / 100 }}%"></div>
+                        <div class="progress-bar progress-bar-danger" style="width: {{ (formCtrl.combinationLength(formCtrl.k, formCtrl.n) - formCtrl.sequenceLength(formCtrl.k, formCtrl.n, 0)) / 100 }}%"></div>
+                    </div>
+                    <div id="solution"></div>
                 </div>
             </div>
         </div>
