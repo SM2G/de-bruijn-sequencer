@@ -139,8 +139,12 @@ app.controller('FormController', function () {
                 return sequence;
             };
 
-            var output = "K length is " + karray.length +
-            ", N is " + n + ', total length is ' + db(karray.length, n).length ;
+            var output = "K length is "
+            + karray.length
+            + ", N is "
+            + n
+            + ', total length is '
+            + db(karray.length, n).length + '. Duplicates are <em>highlighted</em>.';
         }
 
         var sequence = db(karray.length, n);
