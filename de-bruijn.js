@@ -150,6 +150,8 @@ app.controller('FormController', function () {
         var sequence = db(karray.length, n);
         var new_sequence = replace_all(sequence.join(''), k);
         var split_sequence = format_solution(new_sequence, n);
+
+        // Solution Output
         document.getElementById('solution').innerHTML = table + output + "</br>"
         //+ new_sequence+ "</br>"
         + split_sequence;
