@@ -18,9 +18,11 @@ This is still a *work in progress* project, but you can still give it [a try](ht
 
 * [AngularJS](https://angularjs.org)
 
-* [Bootstrap](http://getbootstrap.com)
-
 * [Animate.CSS](https://daneden.github.io/animate.css/)
+
+* [jQuery](http://jquery.com/)
+
+* [Bootstrap](http://getbootstrap.com)
 
 * [Bootswatch](http://bootswatch.com)
 
