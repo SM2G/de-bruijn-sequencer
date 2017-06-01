@@ -21,6 +21,17 @@
 
     <!-- Favicon -->
     <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
+
+    <!-- MathJax inline -->
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            processEscapes: true
+        }
+    });
+    </script>
+
 </head>
 
 <body>
@@ -97,25 +108,33 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="whatisthat">
-                    <p>Used in combinatorial mathematics, a <strong>de Bruijn sequence</strong> of order n on a size-k alphabet A is a cyclic sequence in which every possible length-n string on A occurs exactly once as a substring (i.e., as a contiguous subsequence).
-                        Such a sequence is denoted by B(k, n) and has length kn, which is also the number of distinct substrings of length n on A.</p>
-                    <p>The sequences are named after the Dutch mathematician <strong>Nicolaas Govert de Bruijn</strong>. According to him, the existence of de Bruijn sequences for each order together with the above properties were first proved, for the case of alphabets with two elements, by Camille Flye Sainte-Marie in 1894, whereas the generalization to larger alphabets is originally due to Tanja van Aardenne-Ehrenfest and himself.</p>
+                    <p>Often used in combinatorial mathematics, a <strong>de Bruijn sequence</strong> is the shortest circular sequence of length $\sigma^n$ such that every string of length $n$ on the alphabet $a$ of size $\sigma$ occurs as a contiguous subrange of the sequence described by $a$.
+                    </br>Such a sequence is denoted by $B(k, n)$ and has length $k^n$, which is also the number of distinct substrings of length $n$ on $a$.</p>
+                    <p>For example, a de Bruijn sequence of order $n=2$ on the alphabet $a={a,b,c}$ will result in the following solution <span class="text-success">{a,a,c,b,b,c,c,a,b}</span>.
+                        <p>Therefore, de Bruijn sequences are optimally short. Here's the formula to count the distinct number of de Bruijn sequences for $B(k,n)$.</p>
+                        <span class="text-primary">
+                            $$B(k,n) = \frac{(k!)^{k^{n-1}}}{k^n}$$
+                        </span>
+                        <p>The sequences are named after the Dutch mathematician <strong>Nicolaas Govert de Bruijn</strong>. According to him, the existence of de Bruijn sequences for each order together with the above properties were first proved, for the case of alphabets with two elements, by Camille Flye Sainte-Marie in 1894, whereas the generalization to larger alphabets is originally due to Tanja van Aardenne-Ehrenfest and himself.</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</body>
+    </body>
 
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-<!-- Angular JS -->
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
+    <!-- Angular JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
 
-<!-- App -->
-<script type="text/javascript" src="de-bruijn.js"></script>
+    <!-- MathJax -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'></script>
 
-</html>
+    <!-- App -->
+    <script type="text/javascript" src="de-bruijn.js"></script>
+
+    </html>
