@@ -152,7 +152,7 @@ app.controller('FormController', function () {
         var split_sequence = format_solution(new_sequence, n);
 
         // Solution Output
-        document.getElementById('solution').innerHTML = table + output + "</br>"
+        document.getElementById('solution').innerHTML = output + "</br>"
         //+ new_sequence+ "</br>"
         + split_sequence;
     };
