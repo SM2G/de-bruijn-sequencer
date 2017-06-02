@@ -2,7 +2,7 @@
 
 An **AngularJS** powered app hosted on **Github Pages** to solve De Bruijn sequences right on any web browser.
 
-This is still a *work in progress* project, but you can still give it [a try](https://sm2g.github.io/de-bruijn-sequencer/)!
+This is a *work in progress* project, but you can still give it [a try](https://sm2g.github.io/de-bruijn-sequencer/)!
 
 ## Features
 
@@ -18,14 +18,17 @@ This is still a *work in progress* project, but you can still give it [a try](ht
 
 * [AngularJS](https://angularjs.org)
 
-* [Animate.CSS](https://daneden.github.io/animate.css/)
-
-* [jQuery](http://jquery.com/)
+* [Animate.CSS](https://daneden.github.io/animate.css)
 
 * [Bootstrap](http://getbootstrap.com)
 
 * [Bootswatch](http://bootswatch.com)
 
-* [Font Awesome](http://fontawesome.io/)
+* [Font Awesome](http://fontawesome.io)
 
-* [Github Pages](https://pages.github.com/)
+* [Github Pages](https://pages.github.com)
+
+* [jQuery](http://jquery.com)
+
+* [MathJax](http://www.mathjax.org)
+
