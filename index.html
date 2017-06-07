@@ -19,6 +19,12 @@
     <!-- Animate CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 
+    <!-- Base -->
+    <link rel="stylesheet" href="css/de-bruijn.css">
+
+    <!-- Ripple -->
+    <link rel="stylesheet" href="css/ripple.min.css">
+
     <!-- Favicon -->
     <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
 
@@ -67,8 +73,8 @@
 
                                     <!-- Validation -->
                                     <div class="pull-right animated fadeInLeft"></br>
-                                        <button ng-click="formCtrl.deBrujin(formCtrl.k, formCtrl.n);" class="btn btn-lg btn-primary" style="margin-right:10px" ng-disabled="formElements.$invalid">Submit</button>
-                                        <button ng-click="formCtrl.reset()" class="btn btn-lg btn-default">Reset</button>
+                                        <button ng-click="formCtrl.deBrujin(formCtrl.k, formCtrl.n);" class="btn btn-lg btn-primary ripple" style="margin-right:10px" ng-disabled="formElements.$invalid">Submit</button>
+                                        <button ng-click="formCtrl.reset()" class="btn btn-lg btn-default ripple">Reset</button>
                                     </div>
                                 </div>
                             </fieldset>
