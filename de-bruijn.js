@@ -112,6 +112,14 @@ app.controller('FormController', function () {
                 return splitSolution;
             };
 
+            // Full solution
+            function full_solution(full_sequence){
+                var fullSolution = "<div class=\"panel panel-default animated fadeIn pre-scrollable\" style=\"overflow-y:hidden; overflow-x;\"> <div class=\"panel-body\">"
+                + "<p class=\"text-success\">" + full_sequence + "</p>"
+                + "</div>" + "</div>";
+                return fullSolution;
+            };
+
             //De Bruijn sequence for alphabet size k (0,1,2...k-1)
             //and subsequences of length n.
             //From wikipedia Sep 22 2013
@@ -139,22 +147,20 @@ app.controller('FormController', function () {
                 return sequence;
             };
 
-            var output = "K length is "
-            + karray.length
-            + ", N is "
-            + n
-            + ', total length is '
-            + db(karray.length, n).length + '. Duplicates are <em>highlighted</em>.';
         }
 
         var sequence = db(karray.length, n);
         var new_sequence = replace_all(sequence.join(''), k);
+        var full_sequence = full_solution(new_sequence);
         var split_sequence = format_solution(new_sequence, n);
 
         // Solution Output
-        document.getElementById('solution').innerHTML = output + "</br>"
-        //+ new_sequence+ "</br>"
-        + split_sequence;
+        document.getElementById('solution').innerHTML = "<h3>Sequence </h3>"
+        + "<p class=\"text-muted\">Code structured sequence, duplicates are <em>highlighted</em>.</p>"
+        + split_sequence
+        + "<h3>Full sequence </h3>"
+        + "<p class=\"text-muted\">Raw sequence, no structure format.</p>"
+        + full_sequence;
     };
 
 });
