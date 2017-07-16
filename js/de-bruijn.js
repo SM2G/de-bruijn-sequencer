@@ -1,11 +1,11 @@
 var app = angular.module('de-bruijn', []);
 ////////////////////////////////////////////////////////////////////////////////
 app.controller('FormController', function () {
-    this.k = "6 3 9 A";
+    this.k = "639A";
     this.n = 4;
 
     this.reset = function() {
-        this.k = "6 3 9 A";
+        this.k = "639A";
         this.n = 4;
     };
 
@@ -13,7 +13,7 @@ app.controller('FormController', function () {
     this.combinationLength = function (k, n) {
         solutionLength = 0;
         karray = [];
-        karray = k.split(" ");
+        karray = k.split("");
         solutionLength = (karray.length ** n * n);
         return solutionLength;
     };
@@ -21,7 +21,7 @@ app.controller('FormController', function () {
     this.sequenceLength = function (k, n, limit) {
         solutionLength = 0;
         karray = [];
-        karray = k.split(" ");
+        karray = k.split("");
         if ( (karray.length ** n) > limit && limit != 0) {
             solutionLength = "Too long for manual ";
         } else {
@@ -33,7 +33,7 @@ app.controller('FormController', function () {
     this.deBrujin = function(k, n) {
         //alert("K = " + k + " and N = " + n);
         karray = [];
-        karray = k.split(" ");
+        karray = k.split("");
         output = "";
         if (karray.length < 2) {
             // Not enough data
@@ -51,7 +51,7 @@ app.controller('FormController', function () {
             // Replace
             function replace_all(solution, k){
                 karray = [];
-                karray = k.split(" ");
+                karray = k.split("");
                 for (i = 0 ; i < karray.length ; i++) {
                     solution = solution.replace(RegExp(i, "g"), karray[i]);
                 }

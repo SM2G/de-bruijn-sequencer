@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="css/ripple.min.css">
 
     <!-- Favicon -->
-    <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 
 </head>
 
@@ -57,14 +57,14 @@
                             <fieldset >
                                 <div class="form-group">
                                     <!-- Elements Array -->
-                                    <label class="control-label" for="focusedInput">Code Elements (k)</label>
+                                    <label class="control-label" for="focusedInput">Code Elements ($k$)</label>
                                     <input class="form-control" ng-model="formCtrl.k" type="text" required>
-                                    <span class="help-block">Enter dictionary symbols separated by spaces. ex: <b>1 2 3 A B</b>
-                                        <p class="text-info">Dictionary size: {{ formCtrl.k.split(" ").length }}</p>
+                                    <span class="help-block">Enter dictionary symbols. ex: <b>123AB</b>
+                                        <p class="text-info">Dictionary size: {{ formCtrl.k.split("").length }}</p>
                                     </span></br>
 
                                     <!-- Code Length Selector -->
-                                    <label class="control-label">Code Length (n)</label>
+                                    <label class="control-label">Code Length ($n$)</label>
                                     <select ng-model="formCtrl.n" class="form-control" ng-options="n for n in [2,3,4,5,6]" title="Code Length" required>
                                     </select></br>
 
@@ -130,7 +130,7 @@
     <script type="text/javascript" src="js/fontawesome.js"></script>
 
     <!-- MathJax -->
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
     <!-- App -->
     <script type="text/javascript" src="js/de-bruijn.js"></script>
