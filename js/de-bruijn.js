@@ -1,11 +1,11 @@
 var app = angular.module('de-bruijn', []);
 ////////////////////////////////////////////////////////////////////////////////
 app.controller('FormController', function () {
-    this.k = "639A";
+    this.k = "";
     this.n = 4;
 
     this.reset = function() {
-        this.k = "639A";
+        this.k = "";
         this.n = 4;
     };
 
@@ -14,7 +14,11 @@ app.controller('FormController', function () {
         solutionLength = 0;
         karray = [];
         karray = k.split("");
-        solutionLength = (karray.length ** n * n);
+        if (karray.length <1) {
+            solutionLength = "";
+        } else {
+            solutionLength = (karray.length ** n * n);
+        }
         return solutionLength;
     };
 
@@ -24,6 +28,8 @@ app.controller('FormController', function () {
         karray = k.split("");
         if ( (karray.length ** n) > limit && limit != 0) {
             solutionLength = "Too long for manual ";
+        } else if (karray.length < 1) {
+            solutionLength = "";
         } else {
             solutionLength = karray.length ** n;
         }
